@@ -1,0 +1,88 @@
+
+$ npm init
+$ yarn add express
+$ yarn add body-parser
+$ yarn add sequelize
+$ yarn add mysql2
+
+$ yarn add sequelize-cli -D
+$ yarn add nodemon -D
+
+
+$ mkdir app
+$ cd app
+
+$ npx sequelize init
+Isso criará as seguintes pastas
+
+config, contém o arquivo de configuração, que informa à CLI como se conectar ao banco de dados
+models, contém todos os modelos para o seu projeto
+migrations, contém todos os arquivos de migração
+seeders, contém todos os arquivos de propagação
+
+
+npx sequelize-cli model:generate --name Posts --attributes title:string,description:string
+
+    New model was created at C:\Projetos\blog-sequelize\app\models\posts.js .
+    New migration was created at C:\Projetos\blog-sequelize\app\migrations\20200506142157-Posts.js .
+
+npx sequelize-cli db:migrate // Executa comando para inserir migração no banco de dados
+
+npx sequelize-cli seed:generate --name demo-posts  // Gerar propadadores para teste
+
+npx sequelize-cli db:seed:all  // Executar propagação
+
+
+Se você deseja desfazer a semente mais recente:
+npx sequelize-cli db:seed:undo
+
+Se você deseja desfazer uma semente específica:
+npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data
+
+Se você deseja desfazer todas as sementes:
+npx sequelize-cli db:seed:undo:all
+
+
+findAll
+findByPk
+findOne
+findOrCreate
+findAndCountAll
+
+
+npx sequelize-cli model:generate --name Users --attributes name:string,username:string,password:string
+
+New model was created at C:\Projetos\blog-sequelize\app\models\users.js .
+New migration was created at C:\Projetos\blog-sequelize\app\migrations\20200507145907-Users.js .
+
+
+yarn add jsonwebtoken
+yarn add cookie-parser
+
+yarn add bcryptjs
+
+(sequelize) Warning: Model attributes (username) passed into finder method options of model Users, but the options.where object 
+is empty. Did you forget to use options.where?
+Executing (default): 
+
+SELECT `id`, `name`, `username`, `password`, `createdAt`, `updatedAt` FROM `Users` AS `Users` LIMIT 1;
+
+(sequelize) Warning: Model attributes (username) passed into finder method options 
+of model Users, but the options.where object 
+is empty. Did you forget to use options.where?
+Executing (default): 
+SELECT `id`, `name`, `username`, `password`, `createdAt`, `updatedAt` FROM `Users` AS `Users` LIMIT 1;
+
+https://loopback.io/doc/en/lb2/Model-hooks.html
+
+afterInitialize - dispara depois que um modelo foi inicializado.
+beforeValidate - dispara antes da validação ser executada em um modelo. 
+afterValidate - dispara após a validação ser realizada em um modelo.
+beforeSave - dispara antes que um modelo seja salvo em uma fonte de dados.
+afterSave - dispara depois que um modelo é salvo em uma fonte de dados.
+beforeCreate - dispara antes de um modelo ser criado.
+afterCreate - dispara depois que um modelo é criado.
+beforeUpdate - dispara antes de um modelo ser atualizado.
+afterUpdate - dispara depois que um modelo é atualizado.
+beforeDestroy - dispara antes que um modelo seja destruído.
+afterDestroy - dispara depois que um modelo é destruído.
